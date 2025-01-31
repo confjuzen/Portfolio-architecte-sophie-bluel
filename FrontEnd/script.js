@@ -443,6 +443,25 @@ function modifypopup (){
     gallerypopup.id = "addphoto";
     let form = document.createElement("form");
     form.id = "uploadform";
+    form.addEventListener("change", () => {
+      let isComplete = true;
+      let fields = form.querySelectorAll("input, select");
+      let validerbtn = document.getElementById("valider");
+      fields.forEach(field => {
+          if (!field.value) {
+              isComplete = false;
+          }
+      });
+      if (isComplete) {
+          console.log("All fields are complete.");
+          validerbtn.classList.add("validerbtn");
+
+      } else {
+        validerbtn.classList.remove("validerbtn");
+        console.log("Please fill out all fields.");
+      }
+  });
+  
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       verifyupload(event);
