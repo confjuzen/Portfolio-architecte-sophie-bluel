@@ -330,7 +330,6 @@ function rendereditpage() {
   loginpage.innerHTML = "";
   rendermain();
   fetchImages();
-  fetchCategories();
   renderEditormode();
   loginlogoutbtn = 1;
   loginlogout();
@@ -463,11 +462,9 @@ function modifypopup() {
         }
       });
       if (isComplete) {
-        console.log("All fields are complete.");
         validerbtn.classList.add("validerbtn");
       } else {
         validerbtn.classList.remove("validerbtn");
-        console.log("Please fill out all fields.");
       }
     });
 
@@ -512,15 +509,12 @@ function modifypopup() {
     errormsg.id = "errormsg";
     errormsg.textContent = "";
     uploadbtn.addEventListener("change", (event) => {
-      console.log("change event");
       let file = event.target.files[0];
       if (file) {
         let filesize = file.size;
         if (filesize > 4000000) {
-          console.log("choisir une photo de moins de 4mo");
           errormsg.textContent = "Veuillez choisir une photo de moins de 4mo.";
         } else {
-          console.log("photo ajoutée");
           background.innerHTML = "";
           let uploadimg = document.createElement("img");
           uploadimg.id = "uploadimg";
@@ -662,7 +656,6 @@ async function deleteimage(id) {
     },
   })
     .then(() => {
-      console.log(`Image with ID ${id} deleted successfully.`);
       fetchImages();
     })
     .catch((error) => {
